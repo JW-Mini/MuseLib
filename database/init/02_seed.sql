@@ -4,13 +4,13 @@ INSERT INTO artist (name) VALUES ('Eir Aoi'), ('LiSA'), ('DECO*27');
 INSERT INTO album (artist_id, title, year) VALUES
   (1, 'I will... - EP', 2020),
   (2, 'LEO-NiNE', 2020),
-  (3, 'Undercover - Single', 2021);
+  (3, 'UNDERCOVER', 2021);
 
 -- Albums get ids 1, 2, 3 likewise
 INSERT INTO track (album_id, title, duration_ms) VALUES
   (1, 'I will...', 274000),
   (2, 'Gurenge', 238000),
-  (3, 'UNDERCOVER', 204000);
+  (3, 'アンダーカバー', 204000);
 
 INSERT INTO play_event (track_id, played_at, source) VALUES
   (1, '2026-11-01 08:15+09', 'manual'),

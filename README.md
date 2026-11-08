@@ -25,10 +25,12 @@ Confirm the database is up with the following commmand:
 \i searches/topArtistPlays.sql
 
 You should see three artists.
-Now, open the Python virtual environment and execute the song importer.
+Now, make & initialize Python virtual environment and execute the song importer.
 
-Windows: 
+Windows:
+python -m venv .venv
 .venv/Scripts/activate
+pip install -r importer/requirements.txt
 py scan_library.py Path/To/Your/Library
 
 The importer looks through every audio file in the provided path and adds it to the database if all song info is present.

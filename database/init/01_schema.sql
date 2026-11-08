@@ -27,8 +27,19 @@ CREATE TABLE play_event (
   id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   track_id   BIGINT NOT NULL REFERENCES track(id),
   played_at  TIMESTAMPTZ NOT NULL,
-  source     TEXT NOT NULL
+  source     TEXT NOT NULL,
+  -- prevents duplicate listening events
+  UNIQUE (source, track_id, played_at)
 );
 
+-- creates indicies to find specific play times/track ids faster
 CREATE INDEX ON play_event (played_at);
 CREATE INDEX ON play_event (track_id);
+
+-- creates a saved SQL query for monthly play stats
+CREATE VIEW play_stats_monthly AS
+SELECT track_id,
+       date_trunc('month', played_at)::date AS month,
+       count(*) AS play_count
+FROM play_event
+GROUP BY track_id, date_trunc('month', played_at);
